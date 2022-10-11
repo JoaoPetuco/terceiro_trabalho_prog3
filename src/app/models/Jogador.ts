@@ -1,6 +1,8 @@
-import {Entity, Column, PrimaryColumn, ManyToOne, JoinColumn} from 'typeorm';
+import {Entity, Column, PrimaryColumn, ManyToOne, JoinColumn, ManyToMany, JoinTable} from 'typeorm';
 
 import Endereco from '../models/Endereco';
+import Patente from '../models/Patente';
+import Artefato from '../models/Artefato';
 
 @Entity('tb_jogador')
 class Jogador {
@@ -25,6 +27,14 @@ class Jogador {
     @ManyToOne(type => Endereco)
     @JoinColumn({name: "endereco_id", referencedColumnName: "id"})
     endereco: Endereco;   
+
+    @ManyToMany(() => Patente)
+    @JoinTable({name : "tb_jogador_patente", joinColumn: {name:"jogador_nickname", referencedColumnName: "nickname"}, inverseJoinColumn: {name:"patente_id", referencedColumnName: "id"}})
+    patentes: Patente[];
+
+    @ManyToMany(() => Artefato)
+    @JoinTable({name : "tb_jogador_aretafto", joinColumn: {name:"jogador_nickname", referencedColumnName: "nickname"}, inverseJoinColumn: {name:"artefato_id", referencedColumnName: "id"}})
+    artefatos: Artefato[];
 
 }
 export default Jogador;

@@ -18,8 +18,5 @@ export default abstract class Artefato {
     @Column({type: "decimal" , nullable: true,  precision: 2 })
     valor: number;
 
-    @ManyToOne(type => Jogador)
-    @JoinColumn({name: "jogador_nickname", referencedColumnName: "nickname"})
-    jogador: Jogador;  
 
 }

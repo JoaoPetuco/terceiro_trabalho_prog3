@@ -1,6 +1,7 @@
 import {Entity, Column, ManyToOne, JoinColumn, PrimaryGeneratedColumn, ManyToMany, JoinTable} from 'typeorm';
 import Partida from '../models/Partida';
 import Objetivo from '../models/Objetivo';
+// import Modo from '../models/Modo';
 
 @Entity('tb_round')
 class Round {
@@ -28,5 +29,11 @@ class Round {
     @JoinTable({name : "tb_round_objetivo", joinColumn: {name:"round_id", referencedColumnName: "id"}, inverseJoinColumn: {name: "objetivo_id", referencedColumnName: "id"}})
     objetivos: Objetivo[];
 
+
+    // @Column({
+    //     type: "enum",
+    //     enum: Modo,
+    //   })
+    //   modo: Modo;
 }
 export default Round;
